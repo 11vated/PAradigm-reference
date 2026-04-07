@@ -122,21 +122,35 @@ gspl-reference/
 │   ├── composition-laws.md
 │   └── property-tests.md
 │
-├── research/                     ← technical R&D briefs (round 1: 12 briefs + synthesis)
+├── research/                     ← technical R&D briefs (R1: 12 briefs · R2 · R3 · R4: 17 inventory briefs)
 │   ├── README.md                 ← charter, methodology, brief template
-│   ├── 001-gpu-determinism-cross-vendor.md
-│   ├── 002-wgsl-portable-subset.md
-│   ├── 003-jcs-canonicalization-edge-cases.md
-│   ├── 004-rfc6979-ecdsa-p256.md
-│   ├── 005-zstd-deterministic-encoding.md
-│   ├── 006-hm-refinements-feasibility.md
-│   ├── 007-c2pa-rs-library-maturity.md
-│   ├── 008-image-dct-watermark-robustness.md
-│   ├── 009-audiowmark-robustness.md
-│   ├── 010-eu-ai-act-2026.md
-│   ├── 011-agent-reliability-backstops.md
-│   ├── 012-map-elites-convergence.md
-│   └── synthesis.md              ← cross-brief findings, spec impact, Phase 1 deltas
+│   ├── 001..012                  ← Round 1: load-bearing open questions
+│   ├── synthesis.md              ← Round 1 cross-brief findings
+│   ├── ...                       ← Rounds 2 and 3
+│   ├── 081-chemistry-primitives-library.md
+│   ├── 082-physics-constants-and-laws-library.md
+│   ├── 083-materials-library.md
+│   ├── 084-particles-and-fields-library.md
+│   ├── 085-biology-and-anatomy-library.md
+│   ├── 086-earth-sciences-library.md
+│   ├── 086A-cosmology-and-astronomy-library.md
+│   ├── 086B-mathematics-and-geometry-library.md
+│   ├── 086C-music-and-audio-library.md
+│   ├── 086D-language-and-linguistics-library.md
+│   ├── 086E-culture-history-mythology-library.md
+│   ├── 086F-built-world-library.md
+│   ├── 086G-lifestyle-library.md
+│   ├── 086H-psychology-and-emotion-library.md
+│   ├── 087-visual-phenomena-coverage-atlas.md
+│   ├── 088-cross-art-style-and-character-canon.md
+│   ├── 088A-canonical-seed-armory.md
+│   ├── 089-universal-anything-to-gseed-pipeline.md
+│   ├── 090-agent-web-cross-reference-system.md
+│   ├── 091-federated-knowledge-graph.md
+│   ├── 092-character-power-systems-transformations-and-movesets.md
+│   ├── 093-full-media-spectrum-and-studio-technique-substrate.md
+│   ├── 094-vehicles-full-spectrum-and-open-extension-grammar.md
+│   └── round-4-synthesis.md      ← The Inventory and the Look — 72 inventions (INV-310..381)
 │
 ├── codebase/                     ← mirrored existing production source
 │   └── README.md                 ← how to populate this directory
@@ -164,6 +178,7 @@ gspl-reference/
 13. [`roadmap/mvp-build-order.md`](roadmap/mvp-build-order.md) — what to build first.
 14. Deep dive: `engines/`, `algorithms/`, `adr/`.
 15. **Before writing any kernel, proof, agent, or evolution code, read [`research/synthesis.md`](research/synthesis.md) and the relevant briefs in [`research/`](research/).** Round 1 of the technical R&D resolved twelve load-bearing open questions and identified normative spec changes (most importantly: the content hash domain is the *uncompressed* canonical payload, not the compressed bytes).
+16. **Before designing any library, agent grounding, content surface, character power system, studio-craft pipeline, vehicle, or substrate extension, read [`research/round-4-synthesis.md`](research/round-4-synthesis.md) and the 20 Round 4 briefs (081–094).** Round 4 — *The Inventory and the Look* — fills the substrate with the stuff of the world: chemistry, physics, materials, particles, biology, earth, astronomy, math, audio, language, culture, the built world, lifestyle, psychology, the visual coverage atlas, cross-art-style character canon, the 1,000-seed canonical armory, the universal anything-to-gseed pipeline, the agent web cross-reference system, the federated knowledge graph, the character power-system / transformation / moveset substrate, the full media spectrum and studio-technique substrate (anime, cartoons, prestige TV, theatrical film, Pixar-grade CG, Ghibli-grade hand-painted, Aardman/Laika stop-motion, K-drama, telenovela, music video, mockumentary, motion comic, machinima), and a full-spectrum vehicle substrate paired with the substrate's open extension grammar (so anything a creator imagines that we never enumerated still composes through the `ext://` protocol). 72 inventions (INV-310 through INV-381), all signed, all grounded in real authoritative open data, all interlocking. Includes thirteen substrate-level constitutional commitments — non-patchable contracts the substrate makes to its users — and the explicit guarantee that *no creator request ever bottoms out at "the substrate doesn't support that yet."*
 
 **If you are a human contributor:** start at [`spec/00-overview.md`](spec/00-overview.md) and follow your interest.
 

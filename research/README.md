@@ -90,6 +90,7 @@ Numbered list of citations matching the inline references.
 | `synthesis.md` | Round 1 cross-brief findings, spec impact summary, Phase 1 plan deltas |
 | `round-2-synthesis.md` | Round 2 (briefs 013-070) cross-brief synthesis, constitutional commitments, Phase 1 deltas, invention catalog |
 | `round-2-plan.md` | Round 2 charter and brief inventory |
+| `round-3-synthesis.md` | Round 3 (briefs 071-077) closes every concession; 25 new inventions (INV-200 to INV-224); overall substrate confidence raised to 4/5 |
 
 ## Round 2 (briefs 013-070)
 
@@ -197,6 +198,20 @@ Round 2 took the spec from "principled foundation" to "exhaustively defined plat
 | 068 | Academic interactive evolution: Picbreeder, NEAT |
 | 069 | Spore postmortem and ambition analogs |
 | 070 | Master competitive matrix: Paradigm vs 20+ rivals on 20 axes |
+
+## Round 3 — Closing the gaps (briefs 071-077)
+
+Round 3 takes the weaknesses honestly named in the Round 2 synthesis and turns each one into a GSPL-native strength via substrate-level architecture and 25 net-new inventions (INV-200 to INV-224). Every Round 2 concession is reversed in the record. Read `round-3-synthesis.md` for the integrated view.
+
+| # | Title | Closes concession | Confidence |
+|---|---|---|---|
+| 071 | Beating Houdini at hard simulation | "Houdini will be better at hard simulation for years" | 4/5 |
+| 072 | Beating Unreal at AAA 3D rendering | "Unreal wins at AAA 3D rendering" | 4/5 |
+| 073 | Beating MetaHuman at photoreal humans | "MetaHuman wins at photoreal humans" | 4/5 |
+| 074 | GSPL multiplayer runtime | "GSPL doesn't have a multiplayer runtime" | 4/5 |
+| 075 | GSPL without a real GPU | "Depends on a real GPU for the best engines" | 4/5 |
+| 076 | Open-weight licensing resilience | "Open-weight licensing volatility is a risk" | 4/5 |
+| 077 | ZK anonymous publication confidence path | "ZK anonymous publication is 2/5 confidence" | 4/5 at v1.5, 4.5/5 at v2 |
 
 ## How to read this directory
 
