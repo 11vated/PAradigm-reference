@@ -91,6 +91,12 @@ Numbered list of citations matching the inline references.
 | `round-2-synthesis.md` | Round 2 (briefs 013-070) cross-brief synthesis, constitutional commitments, Phase 1 deltas, invention catalog |
 | `round-2-plan.md` | Round 2 charter and brief inventory |
 | `round-3-synthesis.md` | Round 3 (briefs 071-077) closes every concession; 25 new inventions (INV-200 to INV-224); overall substrate confidence raised to 4/5 |
+| `round-4-plan.md` | Round 4 charter — fill the substrate with the stuff of the world |
+| `round-4-synthesis.md` | Round 4 (briefs 081-094) ships 17 measured-world libraries + character canon + canonical seed armory + universal conversion pipeline + agent web cross-reference + federated knowledge graph; 72 new inventions (INV-310 to INV-381); 13 non-patchable constitutional commitments; substrate confidence 4.5/5 |
+| `round-5-plan.md` | Round 5 charter — from locked architecture to first thousand users |
+| `round-5-synthesis.md` | Round 5 (briefs 095-108) ships curation, partnerships, consultancies, federation operations, query budgets, cache lifecycle, composition graph viewer, first-ten-minutes path, launch criteria, creator economics, governance, and year-1 roadmap; 100 new inventions (INV-382 to INV-481); ship-readiness posture; round confidence 4.5/5 |
+| `round-6-plan.md` | Round 6 charter — research-first teardown of frontier models, agent frameworks, and code platforms to specify how GSPL becomes structurally unsurpassable |
+| `round-6-synthesis.md` | Round 6 (briefs 109-131) lands the seven-axis structural claim (Signed, Typed, Lineage-tracked, Graph-structured, Confidence-bearing, Rollback-able, Differentiable), the five-layer reasoning kernel, four-tier memory, four-layer action space, four-cadence self-improvement loop, neurosymbolic binding, and v0.1→v0.5 release arc; 74 new inventions (INV-482 to INV-555); round confidence 4.4/5 |
 
 ## Round 2 (briefs 013-070)
 
@@ -213,6 +219,104 @@ Round 3 takes the weaknesses honestly named in the Round 2 synthesis and turns e
 | 076 | Open-weight licensing resilience | "Open-weight licensing volatility is a risk" | 4/5 |
 | 077 | ZK anonymous publication confidence path | "ZK anonymous publication is 2/5 confidence" | 4/5 at v1.5, 4.5/5 at v2 |
 
+## Round 4 — The inventory and the look (briefs 081-094)
+
+Round 4 fills the substrate with the stuff of the world: 17 measured-world libraries, the character canon, the canonical seed armory, the universal anything-to-gseed conversion pipeline, the agent web cross-reference system, and the federated knowledge graph that holds it all together. 72 new inventions (INV-310..381). 13 non-patchable constitutional commitments. Read `round-4-synthesis.md` for the integrated view.
+
+| # | Title |
+|---|---|
+| 081 | Chemistry primitives |
+| 082 | Physics constants and laws |
+| 083 | Materials |
+| 084 | Particles and fields |
+| 085 | Biology and anatomy |
+| 086 | Earth sciences |
+| 086A | Cosmology and astronomy |
+| 086B | Mathematics and geometry |
+| 086C | Music and audio |
+| 086D | Language and linguistics |
+| 086E | Culture, history, mythology |
+| 086F | Built world (architecture, urbanism, vehicles, tools) |
+| 086G | Lifestyle (textiles, garments, food) |
+| 086H | Psychology and emotion |
+| 087 | Visual phenomena coverage atlas |
+| 088 | Cross-art-style and character canon |
+| 088A | Canonical seed armory |
+| 089 | Universal anything-to-gseed pipeline |
+| 090 | Agent web cross-reference system |
+| 091 | Federated knowledge graph |
+| 092 | Character power systems, transformations, and movesets |
+| 093 | Full media spectrum and studio technique substrate |
+| 094 | Vehicles full-spectrum + substrate open-extension grammar |
+
+## Round 5 — From locked architecture to first thousand users (briefs 095-108)
+
+Round 5 turns the locked Round 4 architecture into ship-readiness: curation discipline, partner engagements, lived-experience consultancies, federation operations, query budgets, cache lifecycle, composition graph UI, first-ten-minutes UX, launch gates, creator economy, governance council, and year-1 roadmap. 100 new inventions (INV-382..481). No new substrate primitives, no new constitutional commitments. Read `round-5-synthesis.md` for the integrated view.
+
+| # | Title |
+|---|---|
+| 095 | 1,000-seed armory curation plan |
+| 096 | Style adapter quality acceptance criteria |
+| 097 | Anti-hallucination test suite and grounding gates |
+| 098 | Source-archive partnership program |
+| 099 | Lived-experience consultancy network |
+| 100 | Federation peer protocol details |
+| 101 | Knowledge graph query budget and caching |
+| 102 | Reference cache lifecycle |
+| 103 | Composition graph viewer + reference transparency UI |
+| 104 | First-user experience: the critical first ten minutes |
+| 105 | Launch criteria and scaling plan |
+| 106 | Creator economics and marketplace pricing |
+| 107 | Governance framework and constitutional amendment process |
+| 108 | Year-1 roadmap and milestones |
+
+## Round 6 — Surpassing the frontier (briefs 109-131)
+
+Round 6 answers the charter question: "how to truly surpass what's already available." It is a research-first round that tears down every frontier model, agent framework, and code platform at the source level, then specifies a reasoning kernel, memory system, action space, self-improvement loop, and neurosymbolic binding that compound into a structurally unsurpassable substrate. 23 briefs across four tiers. 74 new inventions (INV-482..555). The culminating Brief 131 states the seven-axis structural claim and the v0.1→v0.5 release arc. Read `round-6-synthesis.md` for the integrated view.
+
+### Tier T — Frontier model teardowns (109-114)
+
+| # | Title |
+|---|---|
+| 109 | Frontier reasoning training recipes (OpenAI o1/o3, DeepSeek-R1, Qwen3-Thinking) |
+| 110 | Open-weight backbone survey and selection |
+| 111 | Long-context architectures (YaRN, Mamba, hybrid SSM) |
+| 112 | RLHF / DPO / KTO / RFT recipe landscape |
+| 113 | Constitutional training and non-amendable commitments |
+| 114 | Neurosymbolic reasoning and world-model primitives |
+
+### Tier U — Agent frameworks and reasoning topologies (115-120)
+
+| # | Title |
+|---|---|
+| 115 | LATS, ToT, GoT, Reflexion, Self-Refine taxonomy |
+| 116 | Multi-agent topologies (AutoGen, CrewAI, MetaGPT, Camel) |
+| 117 | Tool-use protocols (MCP, Toolformer, Gorilla, xgrammar, CodeAct) |
+| 118 | Multi-agent hand-off and signed lineage |
+| 119 | Tiered self-improvement cadence and substrate-as-signal |
+| 120 | RAG evolution: HyDE → Self-RAG → GraphRAG → Contextual Retrieval |
+
+### Tier V — Code platform source-level teardowns (121-125)
+
+| # | Title |
+|---|---|
+| 121 | Claude Code architecture teardown |
+| 122 | Qwen Code / Qwen-Agent architecture teardown |
+| 123 | Gemini Code / Gemini CLI teardown |
+| 124 | Cursor / Aider / Cline / Continue / Roo / OpenHands teardown |
+| 125 | Copilot Workspace / Devin / SWE-agent / Augment teardown |
+
+### Tier W — GSPL intelligence design (126-131)
+
+| # | Title |
+|---|---|
+| 126 | GSPL reasoning kernel (five-layer stack) |
+| 127 | GSPL memory and context (four-tier on substrate namespaces) |
+| 128 | GSPL tool-use and modifier-surface intelligence (four-layer action space) |
+| 129 | GSPL self-improvement and evolution loop (four cadences) |
+| 130 | GSPL neurosymbolic substrate binding (three surfaces, four mechanisms) |
+| 131 | GSPL as a differentiable reasoning substrate (seven-axis structural claim + v0.1→v0.5 release arc) |
+
 ## How to read this directory
 
 If you are a human engineer:
@@ -220,6 +324,8 @@ If you are a human engineer:
 - Read briefs 001–006 before writing any kernel code.
 - Read briefs 007–010 before designing the export pipeline.
 - Read briefs 011–012 before building the agent and evolution loops.
+- Read `round-4-synthesis.md` and `round-5-synthesis.md` for the locked architecture and the ship-readiness posture across the 108 total briefs and 172 inventions in Rounds 4–5.
+- Read `round-6-synthesis.md` for the seven-axis structural claim, the reasoning kernel, and the v0.1→v0.5 release arc across all 131 total briefs and 246 inventions through Round 6.
 
 If you are an AI coding agent:
 - Each brief's `Recommendation` is your operating instruction for the relevant subsystem.
