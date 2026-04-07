@@ -122,6 +122,22 @@ gspl-reference/
 │   ├── composition-laws.md
 │   └── property-tests.md
 │
+├── research/                     ← technical R&D briefs (round 1: 12 briefs + synthesis)
+│   ├── README.md                 ← charter, methodology, brief template
+│   ├── 001-gpu-determinism-cross-vendor.md
+│   ├── 002-wgsl-portable-subset.md
+│   ├── 003-jcs-canonicalization-edge-cases.md
+│   ├── 004-rfc6979-ecdsa-p256.md
+│   ├── 005-zstd-deterministic-encoding.md
+│   ├── 006-hm-refinements-feasibility.md
+│   ├── 007-c2pa-rs-library-maturity.md
+│   ├── 008-image-dct-watermark-robustness.md
+│   ├── 009-audiowmark-robustness.md
+│   ├── 010-eu-ai-act-2026.md
+│   ├── 011-agent-reliability-backstops.md
+│   ├── 012-map-elites-convergence.md
+│   └── synthesis.md              ← cross-brief findings, spec impact, Phase 1 deltas
+│
 ├── codebase/                     ← mirrored existing production source
 │   └── README.md                 ← how to populate this directory
 │
@@ -147,6 +163,7 @@ gspl-reference/
 12. [`intelligence/gspl-agent.md`](intelligence/gspl-agent.md) — the Concept-to-Seed pipeline.
 13. [`roadmap/mvp-build-order.md`](roadmap/mvp-build-order.md) — what to build first.
 14. Deep dive: `engines/`, `algorithms/`, `adr/`.
+15. **Before writing any kernel, proof, agent, or evolution code, read [`research/synthesis.md`](research/synthesis.md) and the relevant briefs in [`research/`](research/).** Round 1 of the technical R&D resolved twelve load-bearing open questions and identified normative spec changes (most importantly: the content hash domain is the *uncompressed* canonical payload, not the compressed bytes).
 
 **If you are a human contributor:** start at [`spec/00-overview.md`](spec/00-overview.md) and follow your interest.
 
