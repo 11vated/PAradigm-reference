@@ -1,0 +1,185 @@
+(* GSPL — Genetic Seed Programming Language                                  *)
+(* Grammar in Extended Backus–Naur Form. This file is the canonical syntax    *)
+(* spec for GSPL. The lexer, parser, type checker, interpreter, and code      *)
+(* generator must all conform.                                                 *)
+(*                                                                             *)
+(* Reserved keywords (26):                                                     *)
+(*   seed, gene, fn, type, trait, domain, import, export, let, if, else,      *)
+(*   match, case, return, for, in, while, do, true, false, nil, gpu, effect,  *)
+(*   handle, with, where                                                       *)
+
+program          = { top_level_decl } ;
+
+top_level_decl   = import_decl
+                 | export_decl
+                 | seed_decl
+                 | fn_decl
+                 | type_decl
+                 | trait_decl
+                 | domain_decl
+                 | effect_decl ;
+
+(* ---------- imports & exports ---------- *)
+
+import_decl      = "import" import_path [ "as" identifier ] ";" ;
+import_path      = identifier { "." identifier } [ "::" import_items ] ;
+import_items     = "{" identifier { "," identifier } "}" ;
+
+export_decl      = "export" identifier { "," identifier } ";" ;
+
+(* ---------- seed declarations ---------- *)
+
+seed_decl        = "seed" identifier ":" domain_ref [ where_clause ]
+                   "{" { gene_assignment } "}" ;
+
+gene_assignment  = "gene" identifier "=" expression ";" ;
+
+domain_ref       = identifier ;
+where_clause     = "where" expression ;
+
+(* ---------- functions ---------- *)
+
+fn_decl          = [ "@" annotation { "@" annotation } ] "fn" identifier
+                   [ generic_params ]
+                   "(" [ param_list ] ")"
+                   [ "->" type_expr ]
+                   [ effect_row ]
+                   block ;
+
+annotation       = identifier [ "(" annotation_args ")" ] ;
+annotation_args  = identifier { "," identifier } ;
+
+generic_params   = "[" generic_param { "," generic_param } "]" ;
+generic_param    = identifier [ ":" type_expr ] ;
+
+param_list       = param { "," param } ;
+param            = identifier ":" type_expr [ "=" expression ] ;
+
+effect_row       = "effects" "(" identifier { "," identifier } ")" ;
+
+block            = "{" { statement } [ expression ] "}" ;
+
+(* ---------- statements ---------- *)
+
+statement        = let_stmt
+                 | expr_stmt
+                 | return_stmt
+                 | if_stmt
+                 | match_stmt
+                 | for_stmt
+                 | while_stmt
+                 | handle_stmt ;
+
+let_stmt         = "let" identifier [ ":" type_expr ] "=" expression ";" ;
+expr_stmt        = expression ";" ;
+return_stmt      = "return" [ expression ] ";" ;
+
+if_stmt          = "if" expression block [ "else" ( if_stmt | block ) ] ;
+
+match_stmt       = "match" expression "{" { match_arm } "}" ;
+match_arm        = "case" pattern [ "if" expression ] "=>" ( block | expression ";" ) ;
+
+pattern          = literal_pattern
+                 | identifier
+                 | "_"
+                 | constructor_pattern
+                 | tuple_pattern ;
+literal_pattern  = number | string | "true" | "false" | "nil" ;
+constructor_pattern = identifier [ "(" pattern { "," pattern } ")" ] ;
+tuple_pattern    = "(" pattern { "," pattern } ")" ;
+
+for_stmt         = "for" identifier "in" expression block ;
+while_stmt       = "while" expression block ;
+handle_stmt      = "handle" expression "with" handler_block ;
+handler_block    = "{" { handler_clause } "}" ;
+handler_clause   = identifier "(" [ param_list ] ")" "->" block ;
+
+(* ---------- type declarations ---------- *)
+
+type_decl        = "type" identifier [ generic_params ] "=" type_body ";" ;
+type_body        = type_expr
+                 | record_type
+                 | sum_type ;
+
+record_type      = "{" record_field { "," record_field } "}" ;
+record_field     = identifier ":" type_expr ;
+
+sum_type         = sum_variant { "|" sum_variant } ;
+sum_variant      = identifier [ "(" type_expr { "," type_expr } ")" ] ;
+
+trait_decl       = "trait" identifier [ generic_params ] "{" { trait_member } "}" ;
+trait_member     = "fn" identifier "(" [ param_list ] ")" [ "->" type_expr ] ";" ;
+
+domain_decl      = "domain" identifier "{" { domain_member } "}" ;
+domain_member    = "gene" identifier ":" type_expr [ "in" range_expr ] ";"
+                 | "fn" identifier "(" [ param_list ] ")" [ "->" type_expr ] block ;
+
+effect_decl      = "effect" identifier "{" { effect_op } "}" ;
+effect_op        = "fn" identifier "(" [ param_list ] ")" [ "->" type_expr ] ";" ;
+
+(* ---------- types ---------- *)
+
+type_expr        = base_type
+                 | type_expr "->" type_expr           (* function type *)
+                 | type_expr "?"                       (* optional *)
+                 | "[" type_expr "]"                   (* array *)
+                 | "(" type_expr { "," type_expr } ")" (* tuple *)
+                 | identifier "[" type_expr { "," type_expr } "]"   (* generic *)
+                 | refinement_type ;
+
+refinement_type  = "{" identifier ":" type_expr "|" expression "}" ;
+range_expr       = "[" expression "," expression "]" ;
+
+base_type        = "scalar" | "categorical" | "vector" | "expression" | "struct"
+                 | "array" | "graph" | "topology" | "temporal" | "regulatory"
+                 | "field" | "symbolic" | "quantum" | "gematria" | "resonance"
+                 | "dimensional" | "sovereignty"
+                 | "int" | "float" | "string" | "bool" | "seed" | "void"
+                 | identifier ;
+
+(* ---------- expressions ---------- *)
+
+expression       = pipe_expression ;
+
+pipe_expression  = or_expression { "|>" or_expression } ;
+or_expression    = and_expression { "||" and_expression } ;
+and_expression   = eq_expression { "&&" eq_expression } ;
+eq_expression    = rel_expression { ( "==" | "!=" ) rel_expression } ;
+rel_expression   = add_expression { ( "<" | ">" | "<=" | ">=" ) add_expression } ;
+add_expression   = mul_expression { ( "+" | "-" ) mul_expression } ;
+mul_expression   = unary_expression { ( "*" | "/" | "%" ) unary_expression } ;
+unary_expression = ( "-" | "!" ) unary_expression
+                 | postfix_expression ;
+postfix_expression = primary_expression { postfix_op } ;
+postfix_op       = "." identifier
+                 | "(" [ argument_list ] ")"
+                 | "[" expression "]" ;
+
+primary_expression = literal
+                   | identifier
+                   | "(" expression ")"
+                   | block_expression
+                   | if_expression
+                   | match_expression
+                   | lambda_expression ;
+
+literal          = number | string | "true" | "false" | "nil" ;
+number           = integer | float ;
+integer          = digit { digit } ;
+float            = digit { digit } "." digit { digit } [ ( "e" | "E" ) [ "+" | "-" ] digit { digit } ] ;
+string           = '"' { string_char } '"' ;
+
+argument_list    = expression { "," expression } ;
+block_expression = block ;
+if_expression    = "if" expression block "else" block ;
+match_expression = match_stmt ;
+lambda_expression = "fn" "(" [ param_list ] ")" [ "->" type_expr ] block ;
+
+(* ---------- lexical ---------- *)
+
+identifier       = letter { letter | digit | "_" } ;
+letter           = "a"..."z" | "A"..."Z" | "_" ;
+digit            = "0"..."9" ;
+string_char      = ? any unicode codepoint except '"' and unescaped backslash ? ;
+
+(* End of grammar *)
