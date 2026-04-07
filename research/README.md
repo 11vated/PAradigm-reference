@@ -87,7 +87,116 @@ Numbered list of citations matching the inline references.
 
 | Doc | Purpose |
 |-----|---------|
-| `synthesis.md` | Cross-brief findings, spec impact summary, Phase 1 plan deltas |
+| `synthesis.md` | Round 1 cross-brief findings, spec impact summary, Phase 1 plan deltas |
+| `round-2-synthesis.md` | Round 2 (briefs 013-070) cross-brief synthesis, constitutional commitments, Phase 1 deltas, invention catalog |
+| `round-2-plan.md` | Round 2 charter and brief inventory |
+
+## Round 2 (briefs 013-070)
+
+Round 2 took the spec from "principled foundation" to "exhaustively defined platform." 58 briefs across 9 tiers, with 12 net-new inventions (marked **INV**). Read `round-2-synthesis.md` first for the integrated view; dive into individual briefs for depth.
+
+### Tier A — Substrate deepening (013-028)
+
+| # | Title |
+|---|---|
+| 013 | Content-addressing scheme |
+| 014 | Cross-engine breeding via naturality squares |
+| 015 | gseed format v1 |
+| 016 | Gseed compression |
+| 017 | Federation transport selection |
+| 018 | Versioning and compatibility |
+| 019 | Plugin ABI v1 |
+| 020 | Determinism contract per engine |
+| 021 | Sprite engine deep dive |
+| 022 | Image engine deep dive |
+| 023 | Modifier-surface DSL |
+| 024 | Lineage entry schema |
+| 025 | Renderer determinism contract |
+| 026 | Deterministic kernel implementation |
+| 027 | Reproducibility test harness |
+| 028 | Per-engine spec format |
+
+### Tier B — Agent and conversational layer (029-034)
+
+| # | Title |
+|---|---|
+| 029 | Planner agent architecture |
+| 030 | Critic ensemble architecture |
+| 031 | Refinement loop policy |
+| 032 | Modifier-surface UI binding |
+| 033 | Agent permission model |
+| 034 | Agent observability |
+
+### Tier C — Renderer (035, deferred to Tier G)
+
+| # | Title |
+|---|---|
+| 035 | Renderer architecture overview |
+
+### Tier D — Evolution layer (036-041)
+
+| # | Title |
+|---|---|
+| 036 | Novelty search and AURORA |
+| 037 | Differentiable Quality Diversity (DQD) |
+| 038 | POET open-ended coevolution |
+| 039 | Speciation, niching, population health |
+| 040 | Refinement loop with critics + RL |
+| 041 | **INV** GSPL-native evolution operators |
+
+### Tier E — Sovereignty / trust / marketplace (042-047)
+
+| # | Title |
+|---|---|
+| 042 | Key management lifecycle |
+| 043 | Federation protocol |
+| 044 | Marketplace economics |
+| 045 | Anti-piracy and leak resilience |
+| 046 | IP rights and licensing |
+| 047 | **INV** zk-proof of authorship |
+
+### Tier F — Studio / UX / accessibility (048-052)
+
+| # | Title |
+|---|---|
+| 048 | Studio IDE architecture |
+| 049 | Compose and conversational UX |
+| 050 | Accessibility and internationalization |
+| 051 | Onboarding and progression |
+| 052 | **INV** Lineage-aware time machine |
+
+### Tier G — Backend / infrastructure (053-057)
+
+| # | Title |
+|---|---|
+| 053 | Local-first storage and sync |
+| 054 | Rendering pipeline and GPU |
+| 055 | LLM runtime and BYO models |
+| 056 | Observability, telemetry, privacy |
+| 057 | Release engineering and update channels |
+
+### Tier H — Compliance / security / IP (058-062)
+
+| # | Title |
+|---|---|
+| 058 | EU AI Act deep compliance |
+| 059 | GDPR and data protection |
+| 060 | Supply chain and dependency security |
+| 061 | Content moderation and AUP |
+| 062 | Incident response and disclosure |
+
+### Tier I — Competitive deep dives (063-070)
+
+| # | Title |
+|---|---|
+| 063 | Image generators: SD, Flux, Midjourney |
+| 064 | Video generators: Sora, Veo, Runway |
+| 065 | Game engines: Unity, Unreal, Godot |
+| 066 | Procedural toolkits: Houdini, Blender, WFC |
+| 067 | Creator platforms: Roblox, Dreams, Inworld |
+| 068 | Academic interactive evolution: Picbreeder, NEAT |
+| 069 | Spore postmortem and ambition analogs |
+| 070 | Master competitive matrix: Paradigm vs 20+ rivals on 20 axes |
 
 ## How to read this directory
 
