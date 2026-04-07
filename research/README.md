@@ -97,6 +97,8 @@ Numbered list of citations matching the inline references.
 | `round-5-synthesis.md` | Round 5 (briefs 095-108) ships curation, partnerships, consultancies, federation operations, query budgets, cache lifecycle, composition graph viewer, first-ten-minutes path, launch criteria, creator economics, governance, and year-1 roadmap; 100 new inventions (INV-382 to INV-481); ship-readiness posture; round confidence 4.5/5 |
 | `round-6-plan.md` | Round 6 charter — research-first teardown of frontier models, agent frameworks, and code platforms to specify how GSPL becomes structurally unsurpassable |
 | `round-6-synthesis.md` | Round 6 (briefs 109-131) lands the seven-axis structural claim (Signed, Typed, Lineage-tracked, Graph-structured, Confidence-bearing, Rollback-able, Differentiable), the five-layer reasoning kernel, four-tier memory, four-layer action space, four-cadence self-improvement loop, neurosymbolic binding, and v0.1→v0.5 release arc; 74 new inventions (INV-482 to INV-555); round confidence 4.4/5 |
+| `round-6.5-plan.md` | Round 6.5 charter — close the 20 open follow-ups from Round 6 so Round 7 can start implementation without re-opening any architectural questions |
+| `round-6.5-synthesis.md` | Round 6.5 (briefs 132-151) calibrates router/value-function/benchmark/hardware/cost/cadence/threshold/scope/messaging across 20 briefs in four tiers (X-Calibration / Y-Empirical / Z-Recipe / W-Operational); freezes v0.1 scope at 42 features with 17 explicit cuts; signs the cost model and benchmark posture; ships the creator-facing message; 38 new inventions (INV-556 to INV-593); v0.1 build-ready statement |
 
 ## Round 2 (briefs 013-070)
 
@@ -317,6 +319,50 @@ Round 6 answers the charter question: "how to truly surpass what's already avail
 | 130 | GSPL neurosymbolic substrate binding (three surfaces, four mechanisms) |
 | 131 | GSPL as a differentiable reasoning substrate (seven-axis structural claim + v0.1→v0.5 release arc) |
 
+## Round 6.5 — Calibration close-out (briefs 132-151)
+
+Round 6.5 is a 20-brief mini-round that closes every open follow-up from Round 6 so that Round 7 can start implementation without re-opening any architectural questions. Strict non-goals: no new substrate primitives, no new commitments, no new axes, no new namespaces, no code. Each brief is a calibration (X), empirical sizing (Y), recipe (Z), or operational (W) decision. 38 new inventions (INV-556..593). v0.1 scope frozen at 42 features with 17 explicit cuts. Read `round-6.5-synthesis.md` for the consolidated calibration tables and the v0.1 build-ready statement.
+
+### Tier X — Calibration
+
+| # | Title |
+|---|---|
+| 132 | Router classifier training data and labels |
+| 133 | LATS value function: handcrafted vs learned |
+| 137 | Multi-modal backbone selection (vision tower) |
+| 138 | Compaction cadence calibration |
+| 139 | Procedural promotion threshold tuning |
+| 144 | Drift detector threshold calibration |
+| 148 | World model formalization beyond Brief 131 |
+
+### Tier Y — Empirical sizing
+
+| # | Title |
+|---|---|
+| 135 | Hardware budget v0.1 + context ceiling |
+| 140 | ColBERT storage budget at federation scale |
+| 142 | Grammar compilation performance budget |
+| 145 | GPU-time cost model |
+
+### Tier Z — Recipes
+
+| # | Title |
+|---|---|
+| 136 | Deep Research workflow recipe (v0.1 headline plugin) |
+| 141 | Cross-encoder distillation recipe |
+| 143 | Differentiable action learning recipe |
+| 146 | JEPA predictive embedding dataset construction |
+
+### Tier W — Operational
+
+| # | Title |
+|---|---|
+| 134 | Substrate-native canonical benchmark battery |
+| 147 | Federation-wide adapter review protocol |
+| 149 | v0.1 scope finalization and feature cuts |
+| 150 | External benchmark battery selection |
+| 151 | Creator-facing communication of the seven axes |
+
 ## How to read this directory
 
 If you are a human engineer:
@@ -325,7 +371,8 @@ If you are a human engineer:
 - Read briefs 007–010 before designing the export pipeline.
 - Read briefs 011–012 before building the agent and evolution loops.
 - Read `round-4-synthesis.md` and `round-5-synthesis.md` for the locked architecture and the ship-readiness posture across the 108 total briefs and 172 inventions in Rounds 4–5.
-- Read `round-6-synthesis.md` for the seven-axis structural claim, the reasoning kernel, and the v0.1→v0.5 release arc across all 131 total briefs and 246 inventions through Round 6.
+- Read `round-6-synthesis.md` for the seven-axis structural claim, the reasoning kernel, and the v0.1→v0.5 release arc across briefs 109-131.
+- Read `round-6.5-synthesis.md` for the consolidated calibration tables, the cost model, the frozen v0.1 scope, the benchmark posture, and the creator-facing message — and the v0.1 build-ready statement that closes the architectural phase. **151 total briefs and 593 inventions through Round 6.5.**
 
 If you are an AI coding agent:
 - Each brief's `Recommendation` is your operating instruction for the relevant subsystem.
