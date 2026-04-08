@@ -1,5 +1,7 @@
 # 015 — The .gseed file format: layout, magic, sections, forward-compat
 
+> **v0.2 PROPOSAL — NOT IMPLEMENTED IN PHASE 1.0.** The shipping `.gseed` format for v0.1 is **ADR-009** (4-byte `GSED` magic, 1-byte version, 42-byte fixed header, MessagePack-encoded canonical payload, optional zstd, optional C2PA appendix). This brief proposes a richer section-table format with per-section hashes for partial verification (better for streaming and live-content pipelines). It is queued as a **v0.2 supersede candidate for ADR-009** and is not part of Phase 1.0.
+
 ## Question
 What is the on-disk binary layout of a `.gseed` file, what magic bytes and section structure does it use, and how does it handle forward-compatible extension without breaking older readers?
 

@@ -1,5 +1,7 @@
 # 013 — The 17 gene types: complete catalog, semantics, operators
 
+> **SUPERSEDED — see `spec/02-gene-system.md`.** This brief is Round-1 research. The locked kernel gene type catalog is `spec/02-gene-system.md`. Where this brief and spec/02 disagree, **spec/02 wins**. Operator hints in this brief (BLX-α, SBX, OKLab ΔE, Hausdorff distance, etc.) survive as implementation guidance for the matching spec/02 type.
+
 ## Question
 What is the complete v1 catalog of GSPL gene types, what does each one mean semantically, and what mutation / crossover / distance / validation operators must each one ship with?
 

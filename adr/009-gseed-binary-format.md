@@ -36,6 +36,18 @@ The payload is the canonical JSON of the seed, encoded as MessagePack for compac
 
 The C2PA appendix, if present, is a complete CBOR-encoded C2PA manifest as defined in the C2PA spec.
 
+### C2PA appendix zero-attachments encoding (locked for Phase 1.0)
+
+The C2PA appendix is **optional**. Zero-attachments is a first-class state of the format, not an unimplemented case. The canonical encoding of zero-attachments is precise:
+
+- **Cleared bit 1** in the header `flags` byte = "no C2PA appendix attached." This is **not** the same as "C2PA attached pointing to an empty manifest" — those are semantically different states.
+- Zero-attachments is encoded as: **flag bit 1 cleared AND zero appendix bytes present in the file body.**
+- A file where bit 1 is cleared but appendix bytes follow is **malformed** and decoders MUST reject it with `DecodeError::C2paFlagMismatch`.
+- A file where bit 1 is set but the appendix length is zero is **malformed** and decoders MUST reject it with `DecodeError::C2paFlagMismatch`.
+- "C2PA attached pointing to a deliberately-empty manifest" (e.g., to assert "no claims" rather than "no manifest") is **not a representable Phase 1.0 state**. It is reserved for the v0.2 ADR that wires the c2pa-rs library in Phase 1.8 (per Tier H Brief 226), which will define its own flag-bit semantics if it chooses to support that distinction.
+
+This precision is locked here so that the dual Rust/TypeScript readers in Phase 1.0 agree on the zero-case byte-for-byte. A zero-case that two readers encode differently is worse than no zero-case at all.
+
 ## Consequences
 
 **Positive:**

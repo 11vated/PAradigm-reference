@@ -1,5 +1,7 @@
 # 020 — INV: Five new gene types beyond the 17
 
+> **DEFERRED TO PHASE 2.** `spec/02-gene-system.md` v0.1 ships **exactly seventeen** kernel gene types and explicitly forbids additions in v0.1. The five experimental types proposed here (`EmbeddingGene`, `NarrativeGene`, `EnvelopeGene`, `SwarmGene`, `RuleGene`) live in a Phase 2 experimental branch for A/B testing and can enter v0.2 only via a typed GSEP (Brief 230) with migration tooling (Brief 229). The kernel type-id space reserves IDs **18–31** for these and future experimental types so adding them later does not require a major version bump.
+
 ## Question
 What additional gene types should GSPL invent — beyond the 17 in the v1 catalog — to cover expressive needs that current types cannot reach without ugly workarounds, and what are their formal definitions?
 
