@@ -1,0 +1,91 @@
+# agent/fine_tune/qlora_recipe.yaml
+#
+# QLoRA 4-bit fine-tune recipe for CodeSmith.
+#
+# Executed by SelfFineTuneTriggerTool via the Unsloth runtime. Every
+# field here is load-bearing — the eval harness reads this file to
+# reconstruct the exact training conditions when grading an adapter.
+#
+# License: GSPL Open Specification License (GSPL-OSL-1.0)
+
+version: 1
+
+method: "qlora_4bit"
+framework: "unsloth"
+
+base_models_accepted:
+  - "meta-llama/Llama-3.3-70B-Instruct"
+  - "mistralai/Mistral-Large-Instruct"
+  - "Qwen/Qwen2.5-72B-Instruct"
+  - "any_open_weights_compatible_with_unsloth"
+
+default_base_model: "meta-llama/Llama-3.3-70B-Instruct"
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_compute_dtype: "bfloat16"
+
+lora:
+  r: 64
+  alpha: 128
+  dropout: 0.0
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+optimizer:
+  name: "adamw_8bit"
+  learning_rate: 2.0e-4
+  weight_decay: 0.0
+  warmup_ratio: 0.03
+  lr_scheduler_type: "cosine"
+
+training:
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 16
+  max_seq_length: 8192
+  packing: true
+  seed: 0    # deterministic — inherited by RNG as well
+  gradient_checkpointing: true
+  bf16: true
+
+dataset:
+  format: "sharegpt_conversations"
+  gold_corpus: "agent/bootstrap/corpus/gold/"
+  negative_corpus: "agent/bootstrap/corpus/negative/"
+  substrate:
+    - "seed_commons/"
+    - "spec/"
+    - "language/"
+  mix_ratios:
+    gold: 0.70
+    substrate: 0.25
+    negative: 0.05
+
+eval:
+  harness: "agent/fine_tune/eval_harness.py"
+  held_out_size: 10000
+  required_pass_rate: 0.995
+  metrics:
+    - "stage_4_first_try_pass_rate"
+    - "jcs_round_trip_byte_identity"
+    - "lineage_closure_rate"
+    - "refusal_calibration"
+
+hardware_min: "single_24gb_gpu_for_7b_13b | single_80gb_h100_for_70b"
+
+output:
+  adapter_dir: "agent/fine_tune/adapters/"
+  promote_on_pass: true
+  sign_with_sovereign_signer: true
+  license_pin: "GSPL-OSL-1.0"

@@ -1,0 +1,80 @@
+# intelligence/data-sources.yaml
+#
+# Declarative registry of real-world data connectors usable by the
+# fetch_real_world_data tool. Every connector is optional, free, and
+# air-gap skippable. The agent refuses to fetch from any domain not
+# listed here.
+#
+# License: GSPL Open Specification License (GSPL-OSL-1.0)
+
+version: 1
+
+connectors:
+
+  - id: "noaa.climate"
+    description: "NOAA Climate Data Online v2 datasets"
+    endpoint: "https://www.ncei.noaa.gov/cdo-web/api/v2/"
+    auth: "api_token_header"
+    auth_env_var: "NOAA_CDO_TOKEN"
+    rate_limit_per_s: 5
+    free: true
+    schema: "noaa_cdo_v2"
+    licence: "US_federal_public_domain"
+
+  - id: "jpl.horizons"
+    description: "JPL Horizons solar system ephemeris"
+    endpoint: "https://ssd.jpl.nasa.gov/api/horizons.api"
+    auth: "none"
+    free: true
+    schema: "jpl_horizons_v1"
+    licence: "NASA_open_data"
+
+  - id: "arxiv"
+    description: "arXiv paper metadata (OAI-PMH)"
+    endpoint: "https://export.arxiv.org/oai2"
+    auth: "none"
+    rate_limit_per_s: 1
+    free: true
+    schema: "oai_pmh_arxiv"
+    licence: "arXiv_non_exclusive"
+
+  - id: "pubchem"
+    description: "PubChem compound records"
+    endpoint: "https://pubchem.ncbi.nlm.nih.gov/rest/pug/"
+    auth: "none"
+    rate_limit_per_s: 5
+    free: true
+    schema: "pubchem_pug_rest"
+    licence: "US_federal_public_domain"
+
+  - id: "copernicus"
+    description: "ESA Copernicus Earth observation"
+    endpoint: "https://scihub.copernicus.eu/dhus/"
+    auth: "basic"
+    auth_env_var: "COPERNICUS_USER_PW"
+    free: true
+    schema: "copernicus_scihub"
+    licence: "Copernicus_free_reuse"
+
+  - id: "usgs.seismic"
+    description: "USGS earthquake feed"
+    endpoint: "https://earthquake.usgs.gov/fdsnws/event/1/"
+    auth: "none"
+    free: true
+    schema: "fdsnws_event"
+    licence: "US_federal_public_domain"
+
+  - id: "rss"
+    description: "Generic RSS feeds (sanitized to title+link+pubdate)"
+    endpoint: "<per_feed>"
+    auth: "none"
+    free: true
+    schema: "rss_2_0_sanitized"
+    licence: "per_feed"
+
+air_gap_behaviour:
+  description: >
+    When GSPL_AIR_GAP=1 is set, every connector listed here is
+    disabled at the tool layer. The agent still runs full capacity on
+    the 17 substrate libraries alone.
+  default_mode: "air_gap"

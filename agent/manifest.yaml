@@ -1,0 +1,260 @@
+# agent/manifest.yaml
+#
+# GSPL Full-Capacity Agent — sovereign self-bootstrapping manifest
+#
+# Materializes intelligence/gspl-agent-full-capacity.md into a runnable
+# module. This file is the single source of truth for the agent's stages,
+# sub-agents, tools, bootstrap loop, and fine-tuning pipeline.
+#
+# Every value here is load-bearing: the agent runtime reads this manifest
+# at startup, validates it against agent/schema/manifest.schema.json, then
+# constructs the full pipeline deterministically.
+#
+# License: GSPL Open Specification License (GSPL-OSL-1.0)
+# 100% free forever. No paywalls. No rate limits. Forkable. Air-gap capable.
+
+version: 1
+
+identity:
+  name: "gspl-full-capacity-agent"
+  semver: "1.0.0"
+  license: "GSPL-OSL-1.0"
+  sovereign: true
+  air_gap_capable: true
+  deterministic_output: true
+  rng_seed_prefix: "agent.full_capacity"
+
+# -----------------------------------------------------------------------------
+# Inherited substrate — the libraries this agent is grounded in. The agent
+# MUST NOT emit any gene, seed, or lineage edge that is not traceable to one
+# of these libraries. This is enforced at validation time.
+# -----------------------------------------------------------------------------
+substrate:
+  libraries:
+    - "seed_commons.libraries.chemistry@v1"
+    - "seed_commons.libraries.physics@v1"
+    - "seed_commons.libraries.materials@v1"
+    - "seed_commons.libraries.particles_fields@v1"
+    - "seed_commons.libraries.biology@v1"
+    - "seed_commons.libraries.earth_sciences@v1"
+    - "seed_commons.libraries.cosmology@v1"
+    - "seed_commons.libraries.mathematics@v1"
+    - "seed_commons.libraries.music_audio@v1"
+    - "seed_commons.libraries.linguistics@v1"
+    - "seed_commons.libraries.culture_history@v1"
+    - "seed_commons.libraries.built_world@v1"
+    - "seed_commons.libraries.lifestyle@v1"
+    - "seed_commons.libraries.psychology@v1"
+    - "seed_commons.libraries.power_systems@v1"
+    - "seed_commons.libraries.media_studio@v1"
+    - "seed_commons.libraries.vehicles_grammar@v1"
+  spec_docs:
+    - "spec/02-gene-system.md"
+    - "spec/05-sovereignty.md"
+    - "spec/07-lineage.md"
+  grammar: "language/grammar.ebnf"
+  intent_taxonomy: "intelligence/intent-taxonomy.md"
+  adjective_normalizer: "intelligence/adjective-normalization.md"
+
+# -----------------------------------------------------------------------------
+# The six-stage pipeline. Each stage is loaded as a pure module from
+# agent/stages/<stage_id>.py. Stages execute sequentially; Stage 0 and
+# Stage 5 are skippable.
+# -----------------------------------------------------------------------------
+stages:
+  - id: "stage_0_live_context"
+    module: "agent/stages/stage_0_live_context.py"
+    optional: true
+    skip_in_air_gap: true
+    owner: "researcher"
+  - id: "stage_1_intent_resolution"
+    module: "agent/stages/stage_1_intent_resolution.py"
+    optional: false
+    owner: "intent_oracle"
+  - id: "stage_2_code_generation"
+    module: "agent/stages/stage_2_code_generation.py"
+    optional: false
+    owner: "code_smith"
+  - id: "stage_3_deterministic_growth"
+    module: "agent/stages/stage_3_deterministic_growth.py"
+    optional: false
+    owner: "kernel"
+  - id: "stage_4_validation"
+    module: "agent/stages/stage_4_validation.py"
+    optional: false
+    owner: "validator"
+    retry_policy:
+      max_attempts: 3
+      escalate_to: "evolver"
+  - id: "stage_5_evolution_and_composition"
+    module: "agent/stages/stage_5_evolution_and_composition.py"
+    optional: true
+    owner: "evolver_and_composer"
+  - id: "stage_6_archive_and_sign"
+    module: "agent/stages/stage_6_archive_and_sign.py"
+    optional: false
+    owner: "memory_archivist_and_sovereign_signer"
+
+# -----------------------------------------------------------------------------
+# Sub-agents. Only IntentOracle, Researcher, and Composer are LLM-bearing.
+# CodeSmith is a fine-tuned GSPL-only model with no tool access. Validator,
+# MemoryArchivist, and SovereignSigner are purely deterministic.
+# -----------------------------------------------------------------------------
+sub_agents:
+  - id: "intent_oracle"
+    module: "agent/sub_agents/intent_oracle.py"
+    llm: true
+    pluggable_backend: true
+    backends:
+      default: "ollama://llama-3.3-70b-instruct"
+      accepted: ["ollama", "lmstudio", "llamacpp", "any_openai_compatible"]
+    tools_allowed: ["seed_inventory_query", "fetch_real_world_data"]
+
+  - id: "researcher"
+    module: "agent/sub_agents/researcher.py"
+    llm: true
+    tools_allowed:
+      - "web_search"
+      - "browse_page"
+      - "multimodal_analyze"
+      - "fetch_real_world_data"
+
+  - id: "code_smith"
+    module: "agent/sub_agents/code_smith.py"
+    llm: true
+    fine_tuned: true
+    trained_on: "seed_commons/ + spec/ + language/"
+    tools_allowed: []
+    purity_contract: "emits_only_valid_gspl_or_declines"
+
+  - id: "validator"
+    module: "agent/sub_agents/validator.py"
+    llm: false
+    tools_allowed: ["code_execution"]
+    contract_checklist: "seed-commons/validation/8_point_contract.md"
+
+  - id: "evolver"
+    module: "agent/sub_agents/evolver.py"
+    llm: false
+    tools_allowed: ["evolution_run"]
+    algorithms: ["MAP_Elites", "CMA_ES", "Novelty_Search", "DQD", "POET"]
+
+  - id: "composer"
+    module: "agent/sub_agents/composer.py"
+    llm: true
+    tools_allowed: ["seed_inventory_query"]
+    may_suggest_only: true
+
+  - id: "memory_archivist"
+    module: "agent/sub_agents/memory_archivist.py"
+    llm: false
+    tools_allowed: ["filesystem_write_commons"]
+
+  - id: "sovereign_signer"
+    module: "agent/sub_agents/sovereign_signer.py"
+    llm: false
+    tools_allowed: ["ecdsa_p256_rfc6979_sign"]
+
+# -----------------------------------------------------------------------------
+# Tool layer. Every tool is optional and lineage-recording. See
+# intelligence/tool-layer.md for full request/response schemas.
+# -----------------------------------------------------------------------------
+tools:
+  - id: "web_search"
+    module: "agent/tools/web_search.py"
+    providers: ["searxng_self_hosted", "brave_search_api", "kagi_api"]
+    optional: true
+    lineage_gene: "dimensional"
+
+  - id: "browse_page"
+    module: "agent/tools/browse_page.py"
+    respects_robots_txt: true
+    optional: true
+    lineage_gene: "dimensional"
+
+  - id: "code_execution"
+    module: "agent/tools/code_execution.py"
+    sandbox: "wasm_isolate"
+    optional: false
+    lineage_gene: "symbolic"
+
+  - id: "seed_inventory_query"
+    module: "agent/tools/seed_inventory_query.py"
+    optional: false
+    lineage_gene: "symbolic"
+
+  - id: "evolution_run"
+    module: "agent/tools/evolution_run.py"
+    optional: true
+    lineage_gene: "graph"
+
+  - id: "fetch_real_world_data"
+    module: "agent/tools/fetch_real_world_data.py"
+    config: "intelligence/data-sources.yaml"
+    optional: true
+    lineage_gene: "dimensional"
+
+  - id: "multimodal_analyze"
+    module: "agent/tools/multimodal_analyze.py"
+    local_model: "llava-1.6 | qwen2-vl | any"
+    optional: true
+    lineage_gene: "dimensional"
+
+  - id: "self_fine_tune_trigger"
+    module: "agent/tools/self_fine_tune_trigger.py"
+    requires_opt_in: true
+    optional: true
+    lineage_gene: "sovereignty"
+
+# -----------------------------------------------------------------------------
+# Self-bootstrapping loop (see agent/bootstrap/loop.py).
+# -----------------------------------------------------------------------------
+bootstrap_loop:
+  enabled: true
+  synthetic_prompts_per_cycle: 1000
+  gold_corpus_minimum_size: 5000
+  fine_tune_threshold_new_examples: 50000
+  evaluation:
+    held_out_size: 10000
+    required_pass_rate: 0.995
+  storage:
+    gold_corpus: "agent/bootstrap/corpus/gold/"
+    negative_corpus: "agent/bootstrap/corpus/negative/"
+    manifest: "agent/bootstrap/corpus/manifest.json"
+
+# -----------------------------------------------------------------------------
+# Local fine-tune pipeline (see agent/fine_tune/qlora_recipe.yaml).
+# -----------------------------------------------------------------------------
+fine_tune:
+  method: "qlora_4bit"
+  framework: "unsloth"
+  base_models_accepted:
+    - "meta-llama/Llama-3.3-70B-Instruct"
+    - "mistralai/Mistral-Large-Instruct"
+    - "Qwen/Qwen2.5-72B-Instruct"
+    - "any_open_weights_compatible_with_unsloth"
+  hardware_min: "single_24gb_gpu_for_7b_13b | single_80gb_h100_for_70b"
+  dataset_format: "sharegpt_conversations"
+  recipe: "agent/fine_tune/qlora_recipe.yaml"
+  eval_harness: "agent/fine_tune/eval_harness.py"
+
+# -----------------------------------------------------------------------------
+# Sovereignty contract. These are hard gates enforced by the agent runtime.
+# -----------------------------------------------------------------------------
+sovereignty:
+  every_seed_signed: true
+  every_tool_call_recorded_in_lineage: true
+  no_agent_seed_may_claim_human_authorship: true
+  provenance_values_allowed: ["fully_agentic", "agent_assisted"]
+  default_content_license: "CC-BY-4.0"
+  sovereignty_gene_mutation_forbidden: true
+
+# -----------------------------------------------------------------------------
+# Success metrics — the 5 criteria that define "full capacity."
+# -----------------------------------------------------------------------------
+success_metrics:
+  - "any_natural_language_request_produces_signed_breedable_seed_under_60_seconds_on_consumer_hardware"
+  - "zero_external_service_dependencies"
+  - "commons_grows_by_1000_validated_seeds_per_day_unattended"
+  - "first_try_validator_pass_rate_ge_0.995_after_third_finetune"
+  - "determinism_parity_across_all_compliant_readers"

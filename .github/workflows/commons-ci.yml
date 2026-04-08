@@ -1,0 +1,90 @@
+name: commons-ci
+
+on:
+  pull_request:
+    paths:
+      - "seed-commons/**"
+      - ".github/workflows/commons-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "seed-commons/**"
+
+jobs:
+  validate:
+    name: Seed Commons validation (6 checks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Discover changed seeds
+        id: discover
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+            head="${{ github.event.pull_request.head.sha }}"
+            git diff --name-only "$base" "$head" -- 'seed-commons/**/*.gspl' 'seed-commons/**/*.gseed.json' > changed.txt
+          else
+            find seed-commons -type f \( -name '*.gspl' -o -name '*.gseed.json' \) > changed.txt
+          fi
+          cat changed.txt
+
+      - name: Check 1 - determinism (grow twice)
+        run: |
+          set -euo pipefail
+          while IFS= read -r f; do
+            case "$f" in *.gspl)
+              deno run --allow-read --allow-env seed-commons/validation/determinism.ts "$f"
+              ;;
+            esac
+          done < changed.txt
+
+      - name: Check 2 - signature + canonicalization
+        run: |
+          set -euo pipefail
+          while IFS= read -r f; do
+            case "$f" in *.gseed.json)
+              deno run --allow-read --allow-env seed-commons/validation/signature.ts "$f"
+              ;;
+            esac
+          done < changed.txt
+
+      - name: Check 3 - grow round trip
+        run: |
+          set -euo pipefail
+          while IFS= read -r f; do
+            case "$f" in *.gspl)
+              deno run --allow-read --allow-env seed-commons/validation/grow.ts "$f"
+              ;;
+            esac
+          done < changed.txt
+
+      - name: Check 4 - commons contract lint
+        run: |
+          set -euo pipefail
+          while IFS= read -r f; do
+            case "$f" in *.gseed.json)
+              deno run --allow-read --allow-env seed-commons/validation/commons-lint.ts "$f"
+              ;;
+            esac
+          done < changed.txt
+
+      - name: Check 5 - lineage graph (non-blocking annotation)
+        continue-on-error: true
+        run: |
+          deno run --allow-read --allow-env seed-commons/validation/graph.ts seed-commons/
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "::notice title=Seed Commons CI::Checks 1-4 gate the merge. Check 5 (graph) is informational. Check 6 (replay) runs nightly."

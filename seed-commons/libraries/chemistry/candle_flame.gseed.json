@@ -1,0 +1,124 @@
+{
+  "schema": "https://paradigm.app/schemas/seed/v1.json",
+  "version": "1.0.0",
+  "domain": "light",
+  "name": "chem.candle_flame",
+  "hash": "sha256:PLACEHOLDER_FILLED_AT_GROW_TIME_DO_NOT_HAND_EDIT",
+  "payload": {
+    "kind": "light",
+    "source": {
+      "kind": "point_flicker",
+      "position": [0.0, 0.0, 0.0],
+      "blackbody_K": 1404.0,
+      "flicker_hz": 14.0,
+      "amplitude": 0.12
+    },
+    "palette": {
+      "space": "oklch",
+      "method": "blackbody",
+      "temperature_K": 1404.0,
+      "swatches": [
+        { "l": 0.22, "c": 0.16, "h": 40.0 },
+        { "l": 0.48, "c": 0.18, "h": 55.0 },
+        { "l": 0.72, "c": 0.14, "h": 70.0 },
+        { "l": 0.92, "c": 0.06, "h": 85.0 }
+      ]
+    },
+    "falloff": "inverse_square",
+    "chemistry_context": {
+      "reaction_ref": "chem://reaction/combustion-methane@v1",
+      "reactants": ["chem://molecule/methane@v1", "chem://molecule/dioxygen@v1"],
+      "products":  ["chem://molecule/carbon-dioxide@v1", "chem://molecule/water@v1"],
+      "adiabatic_flame_K": 1950.0,
+      "rendered_flame_K": 1404.0,
+      "delta_h_kj_per_mol": -890.36,
+      "provenance_citation": "nist-kinetics:combust-ch4@v2022"
+    },
+    "gene_manifest": {
+      "scalar":      ["blackbody_K", "flicker_hz", "amplitude", "adiabatic_flame_K", "delta_h_kj_per_mol"],
+      "categorical": ["source.kind", "falloff"],
+      "vector":      ["source.position", "palette.swatches"],
+      "expression":  ["palette.method=blackbody"],
+      "struct":      ["source", "palette", "chemistry_context"],
+      "array":       ["reactants", "products", "swatches"],
+      "graph":       [],
+      "topology":    [],
+      "temporal":    ["flicker_hz", "amplitude"],
+      "regulatory":  [],
+      "field":       [],
+      "symbolic":    ["reaction_ref", "provenance_citation"],
+      "quantum":     [],
+      "gematria":    [],
+      "resonance":   [],
+      "dimensional": ["embedding"],
+      "sovereignty": ["author", "signature"]
+    },
+    "embedding": {
+      "space": "clip_v1",
+      "ref":   "seed_commons/embeddings/candle_flame.bin",
+      "dim":   512
+    }
+  },
+  "lineage": {
+    "parents": [
+      {
+        "ref":  "chem://reaction/combustion-methane@v1",
+        "hash": "sha256:a3b1c5d9e7f2041a8c6b4d2e9f1a3c5b7d9e1f2a4c6b8d0e2f4a6c8b0d2e4f6a",
+        "relation": "semantic_parent"
+      },
+      {
+        "ref":  "seed_commons.libraries.chemistry@v1",
+        "hash": "sha256:PLACEHOLDER_CHEMISTRY_LIBRARY_HASH",
+        "relation": "module_import"
+      }
+    ],
+    "edges": [
+      {
+        "op": "functor",
+        "name": "functor_combustion_to_light",
+        "from": "chem://reaction/combustion-methane@v1",
+        "to":   "chem.candle_flame",
+        "tool_receipts": []
+      }
+    ]
+  },
+  "quality_vector": {
+    "coherence":   0.94,
+    "fidelity":    0.91,
+    "novelty":     0.42,
+    "aesthetics":  0.85,
+    "constraint":  1.0,
+    "performance": 0.97
+  },
+  "commons_lint": {
+    "pure": true,
+    "deterministic": true,
+    "kernel_gene_only": true,
+    "sovereignty_gene_present": true,
+    "canonicalized_jcs": true,
+    "hash_algorithm": "sha256",
+    "signature_algorithm": "ES256",
+    "signature_hash_alg": "SHA-256",
+    "canonicalization": "JCS-RFC8785",
+    "license_declared": true,
+    "lineage_complete": true
+  },
+  "author": {
+    "thumbprint": "5a8d4e1f3c9b2d7e6a4f8c1b3d5e7f9a2c4b6d8e0f1a3c5b7d9e2f4a6c8b0d2e",
+    "kty": "EC",
+    "crv": "P-256",
+    "role": "GSPL-Foundation-Core"
+  },
+  "signature": {
+    "alg": "ES256",
+    "kid": "5a8d4e1f3c9b2d7e6a4f8c1b3d5e7f9a2c4b6d8e0f1a3c5b7d9e2f4a6c8b0d2e",
+    "canonicalization": "JCS-RFC8785",
+    "deterministic_nonce": "RFC6979",
+    "value": "PLACEHOLDER_ECDSA_P256_SIGNATURE_FILLED_AT_SIGN_TIME"
+  },
+  "created_at": "2026-04-08T00:00:00Z",
+  "rng_seed": "seed_commons.examples.chemistry.candle_flame:v1",
+  "license": "GSPL-OSL-1.0",
+  "visibility": "public",
+  "provenance": "human_authored"
+}
