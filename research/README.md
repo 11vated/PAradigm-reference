@@ -99,6 +99,7 @@ Numbered list of citations matching the inline references.
 | `round-6-synthesis.md` | Round 6 (briefs 109-131) lands the seven-axis structural claim (Signed, Typed, Lineage-tracked, Graph-structured, Confidence-bearing, Rollback-able, Differentiable), the five-layer reasoning kernel, four-tier memory, four-layer action space, four-cadence self-improvement loop, neurosymbolic binding, and v0.1→v0.5 release arc; 74 new inventions (INV-482 to INV-555); round confidence 4.4/5 |
 | `round-6.5-plan.md` | Round 6.5 charter — close the 20 open follow-ups from Round 6 so Round 7 can start implementation without re-opening any architectural questions |
 | `round-6.5-synthesis.md` | Round 6.5 (briefs 132-151) calibrates router/value-function/benchmark/hardware/cost/cadence/threshold/scope/messaging across 20 briefs in four tiers (X-Calibration / Y-Empirical / Z-Recipe / W-Operational); freezes v0.1 scope at 42 features with 17 explicit cuts; signs the cost model and benchmark posture; ships the creator-facing message; 38 new inventions (INV-556 to INV-593); v0.1 build-ready statement |
+| `round-7-plan.md` | Round 7 charter — equip GSPL with the full game-design surface across 8 tiers and ~80 briefs (152-231): game system primitives (A), content inventories (B), authoring tooling (C), export pipeline parity (D), genre composition recipes (E), multiplayer/live-service (F), developer experience (G), and cross-cutting depth + final equipping audit (H); all genres 2D and 3D, with v0.1 reach table per Brief 149 |
 
 ## Round 2 (briefs 013-070)
 
@@ -363,6 +364,146 @@ Round 6.5 is a 20-brief mini-round that closes every open follow-up from Round 6
 | 150 | External benchmark battery selection |
 | 151 | Creator-facing communication of the seven axes |
 
+## Round 7 — Equipping the full game-design surface (briefs 152-231)
+
+Round 7 takes the locked architectural substrate from Round 6.5 and equips GSPL with the full game-design surface across 8 tiers and ~80 briefs. Strict non-goals: no new substrate primitives, no new commitments, no new axes, no new namespaces, no code. All genres, 2D and 3D, with v0.1 reach honestly gated per Brief 149's frozen scope. Read `round-7-plan.md` for the charter.
+
+### Tier A — Game system primitives (152-163)
+
+| # | Title |
+|---|---|
+| 152 | Game loop and tick model namespace |
+| 153 | ECS substrate binding |
+| 154 | Input abstraction namespace |
+| 155 | Camera namespace |
+| 156 | Physics integration 2D and 3D |
+| 157 | Collision and trigger primitives |
+| 158 | Save / load and serialization |
+| 159 | State machines and behavior trees |
+| 160 | Game AI primitives namespace |
+| 161 | Animation runtime namespace |
+| 162 | Particle and VFX runtime |
+| 163 | Audio runtime namespace |
+
+Tier A inventions: **INV-594 to INV-654 (61 new inventions across 12 briefs)**.
+
+### Tier B — Game content inventories (164-176)
+
+| # | Title |
+|---|---|
+| 164 | Mechanics vocabulary catalog (300 verbs across 12 families) |
+| 165 | Progression system patterns (xp/skill/gear/mastery/prestige/milestone/narrative_gate/collection) |
+| 166 | Economy and currency patterns (currency/faucet/sink/exchange/market) |
+| 167 | Combat system patterns (hitbox/hurtbox/damage/status/resource/hitstop/knockback) |
+| 168 | Enemy and creature taxonomies (roles × tiers × archetypes) |
+| 169 | Loot drop and reward systems (table/entry/roll/pity/grant/set_bonus) |
+| 170 | Quest and mission patterns (definition + 8 objective primitives) |
+| 171 | Dialogue and narrative patterns (graph + 5 node types + narrative.* companion) |
+| 172 | Level pattern library (12 canonical pattern families) |
+| 173 | Tilemap and procedural generation (47/16-tile autotile + 8 procgen primitives) |
+| 174 | UI and HUD pattern library (30 default kinds + 5 layouts + 4 themes) |
+| 175 | Sound design and music pattern library (6 audio.pattern families) |
+| 176 | Cutscene and scripted sequence patterns (timeline + 5 kinds + 11 track types) |
+
+Tier B inventions: **INV-655 to INV-719 (65 new inventions across 13 briefs)**.
+
+### Tier C — Authoring and tooling surfaces (177-187)
+
+| # | Title |
+|---|---|
+| 177 | Scene and level editor specification |
+| 178 | Tilemap editor specification |
+| 179 | Animation editor specification |
+| 180 | Dialogue and quest editor specification |
+| 181 | Behavior tree and state machine editor |
+| 182 | Particle and VFX editor specification |
+| 183 | Audio mixer and music editor |
+| 184 | UI and HUD layout editor |
+| 185 | Playtest harness specification |
+| 186 | Balance tooling specification |
+| 187 | Mod and plugin surface specification |
+
+Tier C inventions: **INV-720 to INV-773 (54 new inventions across 11 briefs)**.
+
+### Tier D — Engine export pipelines (188-196)
+
+| # | Title |
+|---|---|
+| 188 | Godot export pipeline |
+| 189 | Unity export pipeline |
+| 190 | Unreal export pipeline |
+| 191 | Phaser export pipeline |
+| 192 | GameMaker export pipeline |
+| 193 | HTML5 standalone export (Three.js + WebGPU) |
+| 194 | Defold and Cocos export pipelines |
+| 195 | Spine and DragonBones runtime export |
+| 196 | Cross-engine parity test suite |
+
+Tier D inventions: **INV-774 to INV-818 (45 new inventions across 9 briefs)**.
+
+### Tier E — Genre composition recipes (197-208)
+
+| # | Title |
+|---|---|
+| 197 | 2D platformer genre recipe |
+| 198 | Top-down action RPG genre recipe |
+| 199 | Puzzle game genre recipe |
+| 200 | Shoot 'em up genre recipe |
+| 201 | Roguelike / roguelite genre recipe |
+| 202 | Card game and deckbuilder genre recipe |
+| 203 | Tactics and strategy genre recipe |
+| 204 | Narrative and visual novel genre recipe |
+| 205 | Simulation and management genre recipe |
+| 206 | 3D first-person and third-person genre recipe |
+| 207 | Voxel and sandbox genre recipe |
+| 208 | Recipe composition and genre mixing |
+
+Tier E inventions: **INV-819 to INV-879 (61 new inventions across 12 briefs)**.
+
+### Tier F — Multiplayer and live-service (209-216)
+
+| # | Title |
+|---|---|
+| 209 | Multiplayer transport and replication |
+| 210 | Account and identity surface |
+| 211 | Leaderboards and achievements |
+| 212 | Live content and update pipeline |
+| 213 | Monetization primitives |
+| 214 | Analytics and telemetry |
+| 215 | Matchmaking and lobby |
+| 216 | Moderation and safety |
+
+Tier F inventions: **INV-880 to INV-936 (57 new inventions across 8 briefs)**.
+
+### Tier G — Developer experience and tooling (217-223)
+
+| # | Title |
+|---|---|
+| 217 | CLI and headless toolchain |
+| 218 | Language server and IDE integration |
+| 219 | Documentation generator and spec viewer |
+| 220 | Debugger and time-travel inspector |
+| 221 | Asset pipeline and import tooling |
+| 222 | Testing framework and CI integration |
+| 223 | Package registry and distribution |
+
+Tier G inventions: **INV-937 to INV-993 (57 new inventions across 7 briefs)**.
+
+### Tier H — Cross-cutting and governance (224-231)
+
+| # | Title |
+|---|---|
+| 224 | Localization and internationalization |
+| 225 | Accessibility surface |
+| 226 | Platform certification and store submission |
+| 227 | Performance budgets and profiling |
+| 228 | Security and anti-cheat |
+| 229 | Substrate versioning and migration |
+| 230 | Governance and substrate evolution |
+| 231 | Round 7 final audit |
+
+Tier H inventions: **INV-994 to INV-1064 (71 new inventions across 7 substantive briefs; Brief 231 is the audit and introduces no inventions)**.
+
 ## How to read this directory
 
 If you are a human engineer:
@@ -373,6 +514,7 @@ If you are a human engineer:
 - Read `round-4-synthesis.md` and `round-5-synthesis.md` for the locked architecture and the ship-readiness posture across the 108 total briefs and 172 inventions in Rounds 4–5.
 - Read `round-6-synthesis.md` for the seven-axis structural claim, the reasoning kernel, and the v0.1→v0.5 release arc across briefs 109-131.
 - Read `round-6.5-synthesis.md` for the consolidated calibration tables, the cost model, the frozen v0.1 scope, the benchmark posture, and the creator-facing message — and the v0.1 build-ready statement that closes the architectural phase. **151 total briefs and 593 inventions through Round 6.5.**
+- Read `round-7-synthesis.md` for the full game-design surface equipping the locked Round 6.5 substrate: 80 new briefs (152-231) across 8 tiers, 488 new inventions (INV-577 to INV-1064), federation-not-monopoly pattern, determinism monetized across seven surfaces, structural protection for accessibility / localization / safety / PII, and the ship-ready statement. **231 total briefs and 1,064 inventions through Round 7.**
 
 If you are an AI coding agent:
 - Each brief's `Recommendation` is your operating instruction for the relevant subsystem.
